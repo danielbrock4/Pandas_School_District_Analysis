@@ -2,4 +2,4 @@
 ## Resources
 
 - **Data Source:** 
-- **Software:** Python 3.7.10, Matplotlib 3.3.4, Jupyter Lab
+- **Software:** Python 3.7.10, Jupyter Lab
