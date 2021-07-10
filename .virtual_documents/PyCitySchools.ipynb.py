@@ -445,4 +445,23 @@ per_school_summary_df = per_school_summary_df[new_column_order]
 per_school_summary_df.head()
 
 
+#FIND THE HIGHEST PERFORMING SCHOOLS 
+    #SORT_VALUES() function - sort a DataFrame or Series for a given text, index, or column that is passed with the () parentheses
+        #PARAMETERS:
+            #ASCENDING=FALSE = highest to lowest
+            #ASCENDING=TRUE = lowest to highest (DEFAULT IF NOT SPECIFIED)
+# Sort and show top five schools.          
+top_school = per_school_summary_df.sort_values(["% Overall Passing"], ascending=False)
+top_school.head()
+
+
+#FIND THE LOWEST PERFORMING SCHOOLS
+    # Sort and show top five schools.
+        #METHOD DEFAULT - ASCENDING=TRUE = lowest to highest (DEFAULT IF NOT SPECIFIED)
+# bottom_schools = per_school_summary_df.sort_values(["% Overall Passing"])
+        #METHOD ASSIGN PARAMETER - ASCENDING=TRUE = lowest to highest (DEFAULT IF NOT SPECIFIED)
+bottom_schools = per_school_summary_df.sort_values(["% Overall Passing"], ascending=True)    
+bottom_schools.head()
+
+
 
