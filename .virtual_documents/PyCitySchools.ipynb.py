@@ -553,4 +553,85 @@ reading_scores_by_grade.index.name = None
 reading_scores_by_grade.head()
 
 
+#ESTABLISH THE SPEND RANGES PER STUDENT
+    #DESCRIBE() METHOD - will return descriptive statistics
+        #"added average math and reading scores by grade."
+per_school_capita.describe()        
+
+
+#ESTABLISH THE SPEND RANGES PER STUDENT
+ # write Pandas range for bins
+spending_bins = [0, 585, 615, 645, 675]
+    # In our DataFrame, we make the lower edge equal to 0. If we don't include the 0 for the spending bins, 
+    # the lowest bin becomes $585–614, which means that the schools that spend less than $585 are not considered.
+
+
+#CUT() FUNCTION = ESTABLISH THE SPEND RANGES PER STUDENT
+    #GROUP THE SERIES ON THE SPENDING RANGES
+        # PD.CUT FUNCTION(DF, RANGES). tHIS CREATE A NEW DATAFRAME OR SERIES
+        # Cut the per_school_capita into the spending ranges.
+spending_bins = [0, 585, 615, 645, 675]
+pd.cut(per_school_capita, spending_bins)
+
+
+#CUT() FUNCTION = ESTABLISH THE SPEND RANGES PER STUDENT
+    # Cut the per_school_capita into the spending ranges.
+spending_bins = [0, 585, 615, 645, 675]
+per_school_capita.groupby(pd.cut(per_school_capita, spending_bins)).count()
+
+
+#CUT() FUNCTION = ESTABLISH THE SPEND RANGES PER STUDENT
+    # Cut the per_school_capita into the spending ranges.
+spending_bins = [0, 585, 630, 645, 675]
+per_school_capita.groupby(pd.cut(per_school_capita, spending_bins)).count()
+
+
+
+# NAME THE RANGES ESTABLISH THE SPEND RANGES PER STUDENT
+    # establish the spending bins and group names
+spending_bins = [0, 585, 630, 645, 675]
+group_names = [">584", "585-629", "630-644", "645-675"]
+
+
+#CATEGORIZE THE SPENDING BINS
+    # Categorize spending based on the bins.
+# Categorize spending based on the bins.
+per_school_summary_df["Spending Ranges (Per Student)"] = pd.cut(per_school_capita, spending_bins, labels=group_names)
+per_school_summary_df
+
+
+#GROUP BY THE SPENDING RANGES
+# Calculate averages for the desired columns.
+# to create a serices that has a column as the index, use the groupby() function on the DataFrame and add the colum inside the parentheses
+spending_math_scores = per_school_summary_df.groupby(["Spending Ranges (Per Student)"]).mean()["Average Reading Score"]
+spending_reading_scores = per_school_summary_df.groupby(["Spending Ranges (Per Student)"]).mean()["Average Reading Score"]
+spending_passing_math = per_school_summary_df.groupby(["Spending Ranges (Per Student)"]).mean()["% Passing Math"]
+spending_passing_reading = per_school_summary_df.groupby(["Spending Ranges (Per Student)"]).mean()["% Passing Reading"]
+overall_passing_spending = per_school_summary_df.groupby(["Spending Ranges (Per Student)"]).mean()["% Overall Passing"]
+
+overall_passing_spending
+
+
+#CREATE A DATAFRAME FOR THE SCORES BY SCHOOL SPENDING
+# Assemble into DataFrame.
+spending_summary_df = pd.DataFrame({
+          "Average Math Score" : spending_math_scores,
+          "Average Reading Score": spending_reading_scores,
+          "% Passing Math": spending_passing_math,
+          "% Passing Reading": spending_passing_reading,
+          "% Overall Passing": overall_passing_spending})
+spending_summary_df
+
+
+#CREATE A DATAFRAME FOR THE SCORES BY SCHOOL SPENDING
+# Formatting
+spending_summary_df["Average Math Score"] = spending_summary_df["Average Math Score"].map("{:.1f}".format)
+spending_summary_df["Average Reading Score"] = spending_summary_df["Average Reading Score"].map("{:.1f}".format)
+spending_summary_df["% Passing Math"] = spending_summary_df["% Passing Math"].map("{:.0f}".format)
+spending_summary_df["% Passing Reading"] = spending_summary_df["% Passing Reading"].map("{:.0f}".format)
+spending_summary_df["% Overall Passing"] = spending_summary_df["% Overall Passing"].map("{:.0f}".format)
+
+spending_summary_df
+
+
 
