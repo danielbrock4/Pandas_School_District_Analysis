@@ -64,6 +64,13 @@ student_data_df.isnull()
 
 
 
+#FIND MISSING VALUES (TRUE ROWS & Chaining)
+    #the ISNULL() Method - used to determine empty rows
+     #determine if there are any missing values in the student data using isnull() method and sum() method to determine if any rows are true
+        #the process of joining two or more methods of functions together taht are separated by a period is called chaining
+student_data_df.isnull().sum()
+
+
 #FIND MISSING VALUES
     #the NOTNULL() Method - used return the opposite Boolen value
      #determine if there are any missing values in the school data using notnull() method 
@@ -449,7 +456,7 @@ per_school_summary_df.head()
     #SORT_VALUES() function - sort a DataFrame or Series for a given text, index, or column that is passed with the () parentheses
         #PARAMETERS:
             #ASCENDING=FALSE = highest to lowest
-            #ASCENDING=TRUE = lowest to highest (DEFAULT IF NOT SPECIFIED)
+            #ASCENDING= lowest to highest (DEFAULT IF NOT SPECIFIED)
 # Sort and show top five schools.          
 top_school = per_school_summary_df.sort_values(["% Overall Passing"], ascending=False)
 top_school.head()
@@ -466,7 +473,7 @@ bottom_schools.head()
 
 #CREATE GRADE-LEVEL DATAFRAMES
     # Create a grade level DataFrame by creating a series for each grade using True Boolean
-ninth_graders = school_data_complete_df[(school_data_complete_df)["grade"] == "9th"]
+ninth_graders = school_data_complete_df[(school_data_complete_df["grade"] == "9th")]
 tenth_graders = school_data_complete_df[(school_data_complete_df["grade"] == "10th")]
 eleventh_graders = school_data_complete_df[(school_data_complete_df["grade"] == "11th")]
 twelfth_graders = school_data_complete_df[(school_data_complete_df["grade"] == "12th")]
@@ -709,6 +716,3 @@ type_summary_df["% Passing Reading"] = type_summary_df["% Passing Reading"].map(
 type_summary_df["% Overall Passing"] = type_summary_df["% Overall Passing"].map("{:.0f}".format)
 
 type_summary_df
-
-
-
