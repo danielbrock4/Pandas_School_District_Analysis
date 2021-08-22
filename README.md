@@ -1,4 +1,4 @@
-# Module 4; Using Pandas & Python to Analyze PyCitySchool District
+# Module 4: Using Pandas & Python to Analyze PyCitySchool District
 ## Resources
 
 - **Data Sources:** 
